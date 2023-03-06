@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     Page<Favorite> findByUserId(Long id, Pageable pageable);
     void deleteByUserIdAndMovieId(Long userId, Long movieId);
+    boolean existsByUserIdAndMovieId(Long userId, Long movieId);
 }

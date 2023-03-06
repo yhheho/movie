@@ -18,4 +18,6 @@ public class Constant {
     public static String WRONG_SEARCH_TERM_ERROR_CODE = "ERR005";
     public static String WRONG_SEARCH_TERM = "Search term can only be 'type', 'title', 'release_date'";
 
+    public static String FAVORITE_NOT_FOUND_ERROR_CODE = "ERR006";
+    public static String FAVORITE_NOT_FOUND = "Can not find the Favorite";
 }

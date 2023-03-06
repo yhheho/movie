@@ -96,6 +96,7 @@ get movie list, can get movie by the search term (only title, release_date, type
     - search can only be the following:
       - search=title={movie_name}, ex: search=title=Titanic.
       - search=release_date={release date, YYYY-MM-DD format}, ex: search=release_date=1999-10-23.
+        - the release_date search will retrieve all movies that are earlier than the given release_date.
       - search=type={movie type}, only `ACTION`, `ROMANTIC`, `DOCUMENT`, `HORROR`.
   - sort (optional): The sort order of the results, either `asc` for ascending or `desc` for descending, defaults to `asc`.
     - sort value other than `asc`, `desc` will have no effects.

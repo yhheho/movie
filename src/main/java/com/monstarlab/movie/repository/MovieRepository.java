@@ -15,6 +15,7 @@ import java.util.Queue;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     // Define any custom query methods here
     Optional<Movie> findByTitle(String title);
+    boolean existsById(Long id);
 
     Page<Movie> findByType(MovieType type, Pageable pageable);
 

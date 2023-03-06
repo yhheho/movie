@@ -1,5 +1,6 @@
 package com.monstarlab.movie.service;
 
+import com.monstarlab.movie.Exceptions.FavoriteNotFoundException;
 import com.monstarlab.movie.Exceptions.MovieNotFoundException;
 import com.monstarlab.movie.Exceptions.UserNotFoundException;
 import com.monstarlab.movie.models.Favorite;
@@ -23,8 +24,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static com.monstarlab.movie.Constants.Constant.MOVIE_NOT_FOUND;
-import static com.monstarlab.movie.Constants.Constant.USER_NOT_FOUND;
+import static com.monstarlab.movie.Constants.Constant.*;
 
 @Service
 public class UserFavoriteService {
@@ -85,11 +85,17 @@ public class UserFavoriteService {
     }
 
     @Transactional
-    public void deleteFavorite(Long userId, Long movieId) throws MovieNotFoundException, UserNotFoundException {
-        Movie movie = movieRepository.findById(movieId)
-                .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND));
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
-        favoriteRepository.deleteByUserIdAndMovieId(userId, movie.getId());
+    public void deleteFavorite(Long userId, Long movieId) throws MovieNotFoundException, UserNotFoundException, FavoriteNotFoundException {
+        if (!movieRepository.existsById(movieId)) {
+            throw new MovieNotFoundException(MOVIE_NOT_FOUND);
+        }
+        if (!userRepository.existsById(userId)) {
+            throw new UserNotFoundException(USER_NOT_FOUND);
+        }
+        if (favoriteRepository.existsByUserIdAndMovieId(userId, movieId)) {
+            favoriteRepository.deleteByUserIdAndMovieId(userId, movieId);
+        } else {
+            throw new FavoriteNotFoundException(FAVORITE_NOT_FOUND);
+        }
     }
 }

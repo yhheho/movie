@@ -1,5 +1,6 @@
 package com.monstarlab.movie.controllers;
 
+import com.monstarlab.movie.Exceptions.FavoriteNotFoundException;
 import com.monstarlab.movie.Exceptions.MovieNotFoundException;
 import com.monstarlab.movie.Exceptions.PageSizeTooLargeException;
 import com.monstarlab.movie.Exceptions.UserNotFoundException;
@@ -67,7 +68,7 @@ public class UserFavoriteController {
 
     @DeleteMapping("/{user_id}/favorites/{movie_id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity deleteFavorite(@PathVariable("user_id") Long userId, @PathVariable("movie_id") Long movieId) throws MovieNotFoundException, UserNotFoundException {
+    public ResponseEntity deleteFavorite(@PathVariable("user_id") Long userId, @PathVariable("movie_id") Long movieId) throws MovieNotFoundException, UserNotFoundException, FavoriteNotFoundException {
         userFavoriteService.deleteFavorite(userId, movieId);
         return ResponseEntity.ok().build();
     }

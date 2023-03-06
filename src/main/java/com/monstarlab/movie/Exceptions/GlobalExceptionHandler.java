@@ -36,6 +36,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(FavoriteNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleFavoriteNotFoundException(FavoriteNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse();
+        error.setMessage(ex.getMessage());
+        error.setErrorCode(FAVORITE_NOT_FOUND_ERROR_CODE);
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex) {
         ErrorResponse error = new ErrorResponse();
