@@ -23,7 +23,7 @@
 
 ## APIs
 ### Auth
-- This service provides single signin/singout functions to support viewing an user's favorites
+- This service provides single signin/singout functions to support viewing a user's favorites
 - Three users are populated in the /resource/db/migration files.
 - User has its own `ROLE`  
 
@@ -67,7 +67,7 @@ get all users.
   - 500 Internal Server Error: Returned if an error occurs on the server.
 
 #### GET /api/users/{user_id}
-get details of an user.
+get details of a user.
 
 - Only signined user can access this endpoint
 - Path Parameters:
@@ -173,10 +173,10 @@ delete a movie
 
 
 ### Favorite
-The path of favorite is under /user
+The path of favorite is under /api/users
 
 #### GET /api/users/{user_id}/favorites
-Retrieve all favorite of an user.
+Retrieve all favorite of a user.
 
 - Only USER or ADMIN role can access this endpoint
 - Path parameter:
@@ -192,7 +192,7 @@ Retrieve all favorite of an user.
       - movieTitle (string): the title of the favorite movie
 
 #### POST /api/users/{user_id}/favorites
-create a new favorite of an user.
+create a new favorite of a user.
 
 - Only USER or ADMIN role can access this endpoint
 - Path parameter:
